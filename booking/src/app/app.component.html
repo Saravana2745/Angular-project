@@ -1,0 +1,81 @@
+<div class = "container">
+<header>
+  <h1>Pearl</h1>
+  <p>Book your slot easily and view all bookings below.</p>
+</header>
+
+<main>
+  <section class="booking-form">
+<h2>Book a Slot</h2>
+<form (ngSubmit)="submitBooking()">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" id="name" [(ngModel)]="booking.name" name="name" required />
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" [(ngModel)]="booking.email" name="email" required />
+  </div>
+  <div class="form-group">
+    <label for="place">Destination</label>
+    <select id="place" [(ngModel)]="booking.place" name="place" required>
+      <option value="Chennai">Chennai</option>
+      <option value="Madurai">Madurai</option>
+      <option value="Coimbatore">Coimbatore</option>
+      <option value="Karur">Karur</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="date">Date</label>
+    <input type="date" id="date" [(ngModel)]="booking.date" name="date" required />
+  </div>
+  <div class="form-group">
+    <label for="time">Time</label>
+    <input type="time" id="time" [(ngModel)]="booking.time" name="time" required />
+  </div>
+  <div class="form-group">
+    <label for="guests">Guests</label>
+    <input type="number" id="guests" [(ngModel)]="booking.guests" name="guests" required />
+  </div>
+  <div class="form-group">
+    <label for="amount">Amount</label>
+    <input type="text" id="amount" [value]="calculateAmount()" readonly />
+  </div>
+  <button type="submit" class="btn">Submit</button>
+</form>
+  </section>
+
+  <section class="booking-list">
+    <h2>All Bookings</h2>
+    <ul>
+      <li *ngFor="let booking of bookings" class="booking-item">
+        <div>
+          <strong>Booking ID:</strong> {{ booking._id }}
+        </div>
+        <div>
+          <strong>Name:</strong> {{ booking.name }}
+        </div>
+        <div>
+          <strong>Email:</strong> {{ booking.email }}
+        </div>
+        <div>
+          <strong>Destination:</strong> {{ booking.place }}
+        </div>
+        <div>
+          <strong>Date:</strong> {{ booking.date }}
+        </div>
+        <div>
+          <strong>Time:</strong> {{ booking.time }}
+        </div>
+        <div>
+          <strong>Guests:</strong> {{ booking.guests }}
+        </div>
+        <div>
+          <strong>Amount:</strong> ₹{{ booking.amount }}
+        </div>
+        <button class="btn cancel-btn" (click)="cancelBooking(booking._id)">Cancel</button>
+      </li>
+    </ul>
+  </section>
+</main>
+</div>
